@@ -43,7 +43,7 @@
   "dependencies": {
     "jquery": "~2.1.0",
     "angular": "~1.2.16",
-    "angular-timer": "~1.1.3",
+    "angular-timer": "git://github.com/ArnaudRinquin/angular-timer#feature_commonjs",
     "angular-ui-router": "~0.2.10"
   }
 }
