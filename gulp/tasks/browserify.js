@@ -21,7 +21,7 @@ gulp.task('browserify', function() {
 		// Specify the entry point of your app
 		entries: ['./src/javascript/app.coffee'],
 		// Add file extentions to make optional in your requires
-		extensions: ['.coffee', '.hbs']
+		extensions: ['.coffee']
 	});
 
 	var bundle = function() {
