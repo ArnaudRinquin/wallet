@@ -7,5 +7,3 @@ app = angular.module 'app', [
 
 app.constant 'version', require('../../package.json').version
 app.config require('./routes')
-
-
