@@ -47,7 +47,7 @@
     "html2js-browserify": "0.0.2",
     "gulp-mocha": "~0.4.1",
     "html2js-browserify": "0.0.2",
-    "jade2js-browserify": "git://github.com/ArnaudRinquin/jade2js-browserify#master",
+    "jade2js-browserify": "0.0.3",
     "mocha": "~1.19.0",
     "chai": "~1.9.1",
     "coffee-script": "~1.7.1"
