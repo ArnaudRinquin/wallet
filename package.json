@@ -45,6 +45,7 @@
     "pretty-hrtime": "~0.2.1",
     "html2js-browserify": "0.0.2",
     "gulp-mocha": "~0.4.1",
+    "html2js-browserify": "0.0.2",
     "mocha": "~1.19.0",
     "chai": "~1.9.1",
     "coffee-script": "~1.7.1"
