@@ -6,7 +6,7 @@ var source       = require('vinyl-source-stream');
 gulp.task('browserify', function(){
 	return browserify({
 			entries: ['./src/javascript/app.coffee'],
-			extensions: ['.coffee', '.html']
+			extensions: ['.coffee', '.html', '.jade']
 		})
 		.bundle({debug: true})
 		.on('error', handleErrors)

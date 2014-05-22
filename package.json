@@ -13,7 +13,8 @@
     "transform": [
       "browserify-shim",
       "coffeeify",
-      "html2js-browserify"
+      "html2js-browserify",
+      "jade2js-browserify"
     ]
   },
   "browserify-shim": {
@@ -41,6 +42,7 @@
     "gulp": "~3.6.0",
     "hbsfy": "~1.3.2",
     "html2js-browserify": "0.0.2",
+    "jade2js-browserify": "git://github.com/ArnaudRinquin/jade2js-browserify#master",
     "mocha": "~1.19.0",
     "vinyl-source-stream": "~0.1.1"
   },
