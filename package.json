@@ -46,7 +46,7 @@
     "pretty-hrtime": "~0.2.1",
     "html2js-browserify": "0.0.2",
     "gulp-mocha": "~0.4.1",
-    "html2js-browserify": "0.0.2",
+    "html2js-browserify": "git://github.com/ArnaudRinquin/html2js-browserify#feature_preprocessors",
     "jade2js-browserify": "0.0.3",
     "mocha": "~1.19.0",
     "chai": "~1.9.1",
