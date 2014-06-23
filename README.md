@@ -26,10 +26,10 @@ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
-### Install Gulp Globally
+### Install Gulp and Bower Globally
 Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 ```
-npm install -g gulp
+npm install -g gulp bower
 ```
 
 ### Install Compass (if you haven't already)
@@ -38,9 +38,9 @@ The gulp-compass module relies on Compass already being installed on your system
 gem update --system
 gem install compass
 ```
-### Install npm dependencies
+### Install npm and bower dependencies
 ```
-npm install
+npm install && bower install
 ```
 This runs through all dependencies listed in `package.json` and downloads them
 to a `node_modules` folder in your project directory.
