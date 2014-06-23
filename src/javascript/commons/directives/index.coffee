@@ -1,4 +1,9 @@
 module.exports = angular.module(
   'app.directives', [
-    require('./boom').name
+    # require('./sampleDirective').name
   ])
+  .directive('sampleDirective', ->
+    restrict: 'E'
+    replace: true
+    template: '<blockquote>BOOM</blockquote>'
+  )

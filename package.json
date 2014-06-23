@@ -45,12 +45,13 @@
     "gulp-util": "~2.2.14",
     "pretty-hrtime": "~0.2.1",
     "html2js-browserify": "0.0.2",
-    "gulp-mocha": "~0.4.1",
     "html2js-browserify": "git://github.com/ArnaudRinquin/html2js-browserify#feature_preprocessors",
     "jade2js-browserify": "0.0.3",
-    "mocha": "~1.19.0",
-    "chai": "~1.9.1",
-    "coffee-script": "~1.7.1"
+    "karma-jasmine": "^0.2.2",
+    "gulp-karma": "0.0.4",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-coffee-preprocessor": "^0.2.1",
+    "karma-browserify": "^0.2.1"
   },
   "dependencies": {
     "jquery": "~2.1.0",

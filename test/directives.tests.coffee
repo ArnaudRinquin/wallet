@@ -4,14 +4,12 @@ describe "directives", ->
   elm = null
     
   beforeEach ->
-    module('directives.boom')
+    module('app.directives')
 
   beforeEach inject(($rootScope, $compile) ->
     $scope = $rootScope.$new()
-    elm = angular.element("<boom></boom>")
+    elm = angular.element("<sample-directive></sample-directive>")
     $compile(elm) $scope
   )
-  it "(Boom) should be defined", ->
-    expect(elm).toBeDefined 
   it "should display big Boom", ->
     expect(elm.text()).toBe('BOOM')
