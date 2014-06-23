@@ -1,0 +1,16 @@
+{
+  "name": "gulp-starter",
+  "version": "0.1.1",
+  "description": "Gulp starter with common tasks and scenarios",
+  "main": "build/app.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.2.18"
+  }
+}
