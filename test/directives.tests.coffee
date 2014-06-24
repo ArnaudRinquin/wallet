@@ -2,7 +2,7 @@ describe "directives", ->
   controller = null
   $scope = null
   elm = null
-    
+
   beforeEach ->
     module('app.directives')
 

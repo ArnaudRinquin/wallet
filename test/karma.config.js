@@ -27,7 +27,7 @@ module.exports = function(config) {
         served: false
       }
     ],
-    
+
     browserify: {
       extensions: ['.coffee', '.html', '.jade'],
 /*       transform: ['coffeeify'], */
@@ -38,7 +38,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      
+
     ],
 
 
@@ -53,7 +53,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'osx'],
 
 
     // web server port

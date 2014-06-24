@@ -50,6 +50,7 @@
     "karma-chrome-launcher": "^0.1.4",
     "karma-coffee-preprocessor": "^0.2.1",
     "karma-jasmine": "^0.2.2",
+    "karma-osx-reporter": "~0.1.0",
     "pretty-hrtime": "~0.2.1",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.1"
