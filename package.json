@@ -9,6 +9,9 @@
   "browser": {
     "plugin": "./src/javascript/vendor/jquery-plugin.js"
   },
+  "scripts":{
+    "postinstall":"bower install"
+  },
   "browserify": {
     "transform": [
       "browserify-shim",
