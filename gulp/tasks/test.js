@@ -1,12 +1,12 @@
 var gulp = require('gulp');
-var mocha = require('gulp-mocha');
 var karma = require('gulp-karma');
 
 var fs = require('fs');
 require('coffee-script/register');
 
 
-gulp.task('test', ['build'], function () {
+gulp.task('test', ['build', 'testrun']);
+gulp.task('testrun', [], function () {
 
 var karmaTestFiles = [
       'src/javascript/app.coffee',
@@ -19,7 +19,7 @@ var karmaTestFiles = [
 return gulp.src(karmaTestFiles)
     .pipe(karma({
       configFile: 'test/karma.config.js',
-      action: 'run'
+      action: 'watch'
     }))
     .on('error', function(err) {
       // Make sure failed tests cause gulp to exit non-zero

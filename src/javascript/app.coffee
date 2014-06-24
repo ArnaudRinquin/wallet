@@ -6,6 +6,5 @@ app = angular.module 'app', [
   require('./commons/directives').name
   require('./home').name
 ]
-
 app.constant 'version', require('../../package.json').version
 app.config require('./routes')
