@@ -4,11 +4,15 @@
 module.exports = angular.module(
   'app.services', [
   ])
-  
-  .factory('sampleFactory', ->
-    fac = {}
-    fac.foo = ['John', 'James', 'Jake']
-    return fac
+
+  .factory('WalletModel', ()->
+    return require './models/wallet'
   )
-  
-  
+
+  .factory('TransactionModel', ()->
+    return require './models/transaction'
+  )
+
+  .factory('CurrencyModel', ()->
+    return require './models/currency'
+  )
