@@ -1,18 +1,8 @@
-module.exports = ($scope)->
-  $scope.foo = 'bar'
+module.exports = ($scope, CurrencyModel, TransactionModel, WalletModel)->
+  currency = CurrencyModel.getFromIso 'GBP'
+  transactions = [
+    new TransactionModel(10, true)
+    new TransactionModel(3, false)
+  ]
 
-  $scope.countdown =
-    start: 25 * 60
-
-  $scope.timerRunning = false;
-
-  $scope.startTimer = ->
-    $scope.$broadcast 'timer-start'
-    $scope.timerRunning = true
-
-  $scope.stopTimer = ->
-    $scope.$broadcast 'timer-stop'
-    $scope.timerRunning = false
-
-  $scope.$on 'timer-stopped', (event, data)->
-    console.log "Timer Stopped - data = #{data}"
+  $scope.wallet = new WalletModel(currency, transactions)
