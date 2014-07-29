@@ -16,3 +16,5 @@ module.exports = angular.module(
   .factory('CurrencyModel', ()->
     return require './models/currency'
   )
+
+  .service('LocalWallet', require './localWallet')
