@@ -14,13 +14,13 @@ describe "Transaction model", ->
     beforeEach ->
       this.amount = 10
       this.isCredit = true
-      this.transaction = new this.TransactionModel(this.amount, this.isCredit)
+      this.transaction = new this.TransactionModel this.amount, this.isCredit
 
     it 'saves the given amount', ->
       expect(this.transaction.amount).toBe this.amount
 
     it 'saves the isCredit attribute', ->
-      expect(this.transaction.isCredit).toBe(this.isCredit);
+      expect(this.transaction.isCredit).toBe this.isCredit
 
     it 'accepts positive integer only', ->
 
