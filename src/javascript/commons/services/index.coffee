@@ -8,3 +8,7 @@ module.exports = angular.module(
   .factory('TransactionModel', ()->
     return require './models/transaction'
   )
+
+  .factory('CurrencyModel', ()->
+    return require './models/currency'
+  )
