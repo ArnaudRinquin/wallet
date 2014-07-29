@@ -1,33 +1,26 @@
-gulp-starter
-============
+Angular Wallet
+==============
 
-[ ![Codeship Status for ArnaudRinquin/gulp-starter](https://www.codeship.io/projects/540c3e00-f957-0131-e8c4-3677fd0adc24/status)](https://www.codeship.io/projects/28857)
+[ ![Codeship Status for ArnaudRinquin/wallet](https://www.codeship.io/projects/4bb61f00-f953-0131-b886-26b5a351acb8/status)](https://www.codeship.io/projects/28850)
 
-Starter Gulp + Browserify project with examples of how to accomplish some common tasks and workflows. Read the [blog post](http://viget.com/extend/gulp-browserify-starter-faq) for more context, and check out the [Wiki]() for some good background knowledge.
+## Stack
 
-Includes the following tools, tasks, and workflows:
+### Toolchain
 
-- Browserify (with browserify-shim)
-- Watchify (caching version of browserify for super fast rebuilds)
-- Compass
-- CoffeeScript (with source mapping!)
-- jQuery (from npm)
-- Angular (from npm)
-- Angular ui-router(from npm)
-- Non common-js vendor code (like a jQuery plugin)
-- LiveReload
-- Static Server
-- Image optimization
-- Error Notifications in Notification Center
-- Codeship
+* Gulp
+* Browserify
+* CoffeeScript
+* SASS + Compass
+* Karma + Jasmine
 
-If you've never used Node or npm before, you'll need to install Node.
-If you use homebrew, do:
-```
-brew install node
-```
+### Running code
 
-Otherwise, you can download and install from [here](http://nodejs.org/download/).
+* Angular
+* Font-Awesome
+* jQuery
+* Angular UI-Routeur
+
+## Setup & build
 
 ### Install Gulp and Bower Globally
 Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
