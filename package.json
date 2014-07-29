@@ -10,7 +10,8 @@
     "plugin": "./src/javascript/vendor/jquery-plugin.js"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "test": "gulp testOnce"
   },
   "browserify": {
     "transform": [
@@ -51,6 +52,7 @@
     "karma-coffee-preprocessor": "^0.2.1",
     "karma-jasmine": "^0.2.2",
     "karma-osx-reporter": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.4",
     "pretty-hrtime": "~0.2.1",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.1"

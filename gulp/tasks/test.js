@@ -26,3 +26,24 @@ return gulp.src(karmaTestFiles)
       throw err;
     });
 });
+
+gulp.task('testOnce', ['build', 'testrunOnce']);
+gulp.task('testrunOnce', [], function () {
+
+  var karmaTestFiles = [
+        'src/javascript/app.coffee',
+        'bower_components/angular-mocks/angular-mocks.js',
+        './**/*.tests.js',
+        './**/*.tests.coffee',
+  ];
+
+  //Karma tests
+  return gulp.src(karmaTestFiles)
+    .pipe(karma({
+      configFile: 'test/karma.config.once.js'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
