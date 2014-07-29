@@ -19,6 +19,7 @@ Includes the following tools, tasks, and workflows:
 - Static Server
 - Image optimization
 - Error Notifications in Notification Center
+- Codeship
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
