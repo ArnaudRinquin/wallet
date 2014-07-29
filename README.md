@@ -49,3 +49,28 @@ gulp
 This will create and run the task defined in `gulpfile.js`. If you're on OS X,
 and have Chrome installed, a window will open displaying the demo page. If not,
 you can visit http://localhost:8080 to view the test page.
+
+## Deployment
+
+### Current instances
+
+Continuous deployment through codeship: [awallet](http://awallet.herokuapp.com/)
+
+### Heroku
+
+1. Create an app
+
+```
+heroku apps:create wallet
+```
+
+2. Set the app custom buildpack:
+
+```
+heroku config:add BUILDPACK_URL=https://github.com/9elements/heroku-buildpack-nodejs-gulp-haml-sass-compass.git -a wallet
+```
+3. Add the heroku app as a git repo:
+
+```
+git remote add heroku git@heroku.com:wallet.git
+```
