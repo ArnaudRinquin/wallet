@@ -8,15 +8,16 @@ describe "Transaction directive", ->
   transaction = null
 
   beforeEach ->
-    module('directives.transactionForm')
+    module('app.directives')
     module('app.services')
 
   beforeEach inject(($rootScope, $compile, TransactionModel) ->
     $scope = $rootScope.$new()
 
     $scope.theTransaction = new TransactionModel(15, true)
+    $scope.total = 100
 
-    elm = angular.element('<div><transaction-form transaction="theTransaction"></transaction-form></div>')
+    elm = angular.element('<div><transaction-form transaction="theTransaction" current-total="total"></transaction-form></div>')
     $compile(elm)($scope)
     $scope.$digest()
     formElm = elm.find('form')
@@ -56,7 +57,7 @@ describe "Transaction directive", ->
       expect(form.amount.$valid).toBe true
 
     it "disallows null amounts", ->
-      $dirScope.transaction.amount = 0
+      $dirScope.transaction.amount = null
       $scope.$digest()
       expect(form.amount.$valid).toBe false
 
@@ -71,6 +72,12 @@ describe "Transaction directive", ->
       expect(form.amount.$valid).toBe false
     it "disalows empty amounts", ->
       $dirScope.transaction.amount = null
+      $scope.$digest()
+      expect(form.amount.$valid).toBe false
+
+    it "disalows total to be below 0", ->
+      $dirScope.transaction.amount = 1000
+      $dirScope.transaction.isCredit = false
       $scope.$digest()
       expect(form.amount.$valid).toBe false
 

@@ -1,4 +1,4 @@
 h1 El magnifico local wallet
 button(ng-click="reset()") Reset
-transaction-form(transaction="newTransaction", on-submit="addTransaction", currency="wallet.currency")
+transaction-form(transaction="newTransaction", on-submit="addTransaction", currency="wallet.currency", current-total="wallet.total")
 wallet(wallet="wallet")

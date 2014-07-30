@@ -10,5 +10,6 @@ module.exports = angular.module('directives.transactionForm',[])
       transaction: '='
       onSubmit: '='
       currency: '='
+      currentTotal: '='
     controller: TransactionFormController
     template: require './template'
