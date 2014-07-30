@@ -9,7 +9,9 @@
   "browser": {
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "angular": "./bower_components/angular/angular.min.js",
-    "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.min.js"
+    "angular-cookies": "./bower_components/angular-cookies/angular-cookies.min.js",
+    "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.min.js",
+    "angular-local-storage": "./bower_components/Angular-localStorage/src/angularLocalStorage.js"
   },
   "scripts": {
     "postinstall": "bower install",
@@ -34,6 +36,12 @@
     },
     "angular-ui-routeur": {
       "depends": "angular"
+    },
+    "angular-cookies": {
+      "depends": "angular"
+    },
+    "angular-local-storage": {
+      "depends": ["angular", "angular-cookies"]
     }
   },
   "devDependencies": {

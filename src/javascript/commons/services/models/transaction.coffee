@@ -8,4 +8,13 @@ class Transaction
     else
       total - @amount
 
+  serialize: ()->
+    {
+      amount: @amount
+      isCredit: @isCredit
+    }
+
+  @deserialize: (serialized)->
+    new Transaction(serialized.amount, serialized.isCredit)
+
 module.exports = Transaction
