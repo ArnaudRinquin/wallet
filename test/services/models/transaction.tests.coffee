@@ -3,31 +3,31 @@ describe "Transaction model", ->
     module('app.services');
 
   beforeEach inject((TransactionModel) ->
-    this.TransactionModel = TransactionModel
+    @TransactionModel = TransactionModel
   )
 
   it "is declared", ->
-    expect(this.TransactionModel).toBeDefined()
+    expect(@TransactionModel).toBeDefined()
 
   describe "constructor", ->
 
     beforeEach ->
-      this.amount = 10
-      this.isCredit = true
-      this.transaction = new this.TransactionModel this.amount, this.isCredit
+      @amount = 10
+      @isCredit = true
+      @transaction = new @TransactionModel @amount, @isCredit
 
     it 'saves the given amount', ->
-      expect(this.transaction.amount).toBe this.amount
+      expect(@transaction.amount).toBe @amount
 
     it 'saves the isCredit attribute', ->
-      expect(this.transaction.isCredit).toBe this.isCredit
+      expect(@transaction.isCredit).toBe @isCredit
 
     it 'accepts positive integer only', ->
 
       callWithZero = =>
-        transaction = new this.TransactionModel(0, true)
+        transaction = new @TransactionModel(0, true)
       callWithNegative = =>
-        transaction = new this.TransactionModel(-1, true)
+        transaction = new @TransactionModel(-1, true)
 
       expect(callWithZero).toThrow()
       expect(callWithNegative).toThrow()
@@ -37,17 +37,18 @@ describe "Transaction model", ->
     describe "when isCredit is true", ->
 
       beforeEach ->
-        this.transaction = new this.TransactionModel 10, true
-        this.result = this.transaction.applyToNumber 20
+        @transaction = new @TransactionModel 10, true
+        @result = @transaction.applyToNumber 20
 
       it "adds its amount to the given number", ->
-        expect(this.result).toBe 30
+        expect(@result).toBe 30
 
     describe "when isCredit is false", ->
 
       beforeEach ->
-        this.transaction = new this.TransactionModel 10, false
-        this.result = this.transaction.applyToNumber 25
+        @transaction = new @TransactionModel 10, false
+        @result = @transaction.applyToNumber 25
 
       it "removes its amount from the given number", ->
-        expect(this.result).toBe 15
+        expect(@result).toBe 15
+
