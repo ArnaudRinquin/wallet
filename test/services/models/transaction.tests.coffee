@@ -52,3 +52,18 @@ describe "Transaction model", ->
       it "removes its amount from the given number", ->
         expect(@result).toBe 15
 
+  describe "serialize()", ->
+
+    beforeEach ->
+      @transaction = new @TransactionModel 10, true
+      @serialized = @transaction.serialize()
+
+    it "returns an object", ->
+      expect(@serialized).toBeDefined()
+
+    it "contains the transaction amount", ->
+      expect(@serialized.amount).toBe 10
+
+    it "contains the transaction amount", ->
+      expect(@serialized.isCredit).toBe true
+

@@ -8,4 +8,10 @@ class Transaction
     else
       total - @amount
 
+  serialize: ()->
+    {
+      amount: @amount
+      isCredit: @isCredit
+    }
+
 module.exports = Transaction
