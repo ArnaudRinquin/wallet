@@ -2,9 +2,23 @@ describe 'LocalWallet', ->
   beforeEach ->
     module 'app.services'
 
-  beforeEach inject((LocalWallet) ->
-    @LocalWallet = LocalWallet
-  )
+  beforeEach ->
+    storageMock = jasmine.createSpyObj 'storage', [
+      'get'
+      'set'
+      'remove'
+      'bind'
+      'unbind'
+      'clearAll'
+    ]
+
+    module ($provide)->
+      $provide.value 'storage', storageMock
+      return null # necessarry
+
+    inject ($injector) ->
+      @LocalWallet = $injector.get('LocalWallet')
+
 
   it 'is declared', ->
     expect(@LocalWallet).toBeDefined()

@@ -1,5 +1,6 @@
 class LocalWallet
-  constructor: (@WalletModel, @CurrencyModel)->
+  constructor: (@WalletModel, @CurrencyModel, @storage)->
+    @storage.set('foo', 'bar')
 
   getLocalWallet: ()->
     @reset() unless @wallet
