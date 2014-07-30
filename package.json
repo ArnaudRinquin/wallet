@@ -41,7 +41,10 @@
       "depends": "angular"
     },
     "angular-local-storage": {
-      "depends": ["angular", "angular-cookies"]
+      "depends": [
+        "angular",
+        "angular-cookies"
+      ]
     }
   },
   "devDependencies": {
@@ -72,6 +75,7 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "pretty-hrtime": "~0.2.1",
     "vinyl-source-stream": "~0.1.1",
-    "watchify": "~0.10.1"
+    "watchify": "~0.10.1",
+    "karma-mocha-reporter": "~0.2.8"
   }
 }

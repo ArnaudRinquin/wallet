@@ -16,7 +16,7 @@ describe "Wallet model", ->
   it "is declared", ->
     expect(@WalletModel).toBeDefined()
 
-  describe 'constructor', ->
+  describe 'constructor()', ->
     it 'throws an error if no currency is given', ->
 
       callWithoutCurrency = =>

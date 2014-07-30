@@ -9,7 +9,7 @@ describe "Transaction model", ->
   it "is declared", ->
     expect(@TransactionModel).toBeDefined()
 
-  describe "constructor", ->
+  describe "constructor()", ->
 
     beforeEach ->
       @amount = 10

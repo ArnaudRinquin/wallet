@@ -9,7 +9,7 @@ describe 'Currency model', ->
   it 'is declared', ->
     expect(this.CurrencyModel).toBeDefined()
 
-  describe 'constructor', ->
+  describe 'constructor()', ->
 
     beforeEach ->
       this.iso = 'EUR'
