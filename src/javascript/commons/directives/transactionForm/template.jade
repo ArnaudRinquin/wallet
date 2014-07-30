@@ -4,7 +4,8 @@
       .form-group
         .input-group
           input.amount.form-control(type="number", step="any", ng-model="transaction.amount", name="amount", min="0.01", required=true, total-positive-once-applied=true, total="{{currentTotal}}", to-be-added="{{transaction.isCredit}}")
-          .input-group-addon.currency {{currency.symbol}}
+          .input-group-addon
+            i.fa.currency(ng-class="currency.iconClass")
 
       input.isCredit(bs-switch=true, ng-model="transaction.isCredit", type="checkbox",
           switch-on-text="credit", switch-off-text="debit",
