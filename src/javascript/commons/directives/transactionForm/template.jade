@@ -1,0 +1,5 @@
+form.transactionForm(name="transactionForm", novalidate)
+  input.isCredit(type="checkbox", ng-model="transaction.isCredit", name="isCredit")
+  input.amount(type="number", step="any", ng-model="transaction.amount", name="amount", min="0.01", required=true)
+  span.currency {{currency.symbol}}
+  button.submit(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid") Add transaction

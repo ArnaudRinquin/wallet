@@ -1,7 +1,6 @@
 module.exports = angular.module(
   'app.home', [
-    'directives.transactionListItem'
-    'directives.wallet'
+    'app.directives'
     'app.services'
   ])
   .controller('HomeController', require('./controller'))
