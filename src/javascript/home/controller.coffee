@@ -1,6 +1,7 @@
 class HomeController
-  constructor: (@$scope, @LocalWallet, @TransactionModel)->
+  constructor: (@$scope, @LocalWallet, @TransactionModel, @$rootScope)->
     @init()
+    @$rootScope.$on 'resetWallet', @reset
 
   init: ()=>
     @$scope.wallet = @LocalWallet.getLocalWallet()
