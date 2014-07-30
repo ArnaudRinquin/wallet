@@ -50,3 +50,68 @@ describe 'Currency model', ->
       this.eur = this.CurrencyModel.getFromIso 'EUR'
       expect(this.eur).toBeDefined()
       expect(this.eur.symbol).toBe '€'
+
+  describe "serialize()", ->
+
+    beforeEach ->
+      @data =
+        iso: 'FOO'
+        symobol: '∆'
+        iconClass: 'icon-foo'
+
+      @currency = new @CurrencyModel @data.iso, @data.symbol, @data.iconClass
+      @serialized = @currency.serialize()
+
+    it "returns an object", ->
+      expect(@serialized).toBeDefined()
+      expect(@serialized.constructor).toBe Object
+
+    it "contains the currency iso", ->
+      expect(@serialized.iso).toBe @data.iso
+
+    it "contains the currency symbol", ->
+      expect(@serialized.symbol).toBe @data.symbol
+
+    it "contains the currency iconClass", ->
+      expect(@serialized.iconClass).toBe @data.iconClass
+
+  describe "Currency.deserialize()", ->
+
+    beforeEach ->
+      @serialized =
+        iso: 'FOO'
+        symbol: '∆'
+        isoClass: 'icon-foo'
+      @currency = @CurrencyModel.deserialize(@serialized)
+
+    it "returns a currency object", ->
+      expect(@currency).toBeDefined()
+      expect(@currency.constructor).toBe @CurrencyModel
+
+    it "contains the currency iso", ->
+      expect(@currency.iso).toBe @serialized.iso
+
+    it "contains the currency symbol", ->
+      expect(@currency.symbol).toBe @serialized.symbol
+
+    it "contains the currency iconClass", ->
+      expect(@currency.iconClass).toBe @serialized.iconClass
+
+  describe "serialize > deserialize", ->
+    beforeEach ->
+      @data =
+        iso: 'FOO'
+        symbol: '∆'
+        isoClass: 'icon-foo'
+
+      @originalcurrency = new @CurrencyModel(@data.iso, @data.symbol)
+
+      @serialized = @originalcurrency.serialize()
+      @deserializedcurrency = @CurrencyModel.deserialize @serialized
+
+    it 'saves iso', ->
+      expect(@deserializedcurrency.iso).toBe @data.iso
+    it 'saves symbol', ->
+      expect(@deserializedcurrency.symbol).toBe @data.symbol
+    it 'saves iconClass', ->
+      expect(@deserializedcurrency.iconClass).toBe @data.iconClass

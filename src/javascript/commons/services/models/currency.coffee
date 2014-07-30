@@ -13,6 +13,14 @@ class Currency
 
   constructor: (@iso, @symbol, @iconClass)->
 
+  serialize: ()->
+    {
+      iso: @iso
+      symbol: @symbol
+      iconClass: @iconClass
+    }
 
+  @deserialize: (serialized)->
+    new Currency(serialized.iso, serialized.symbol, serialized.iconClass)
 
   module.exports = Currency
