@@ -5,32 +5,32 @@ describe "Wallet model", ->
     module('app.services');
 
   beforeEach inject((WalletModel, TransactionModel, CurrencyModel) ->
-    this.WalletModel = WalletModel
-    this.TransactionModel = TransactionModel
-    this.CurrencyModel = CurrencyModel
-    this.currency = this.CurrencyModel.instances[0]
-    this.createTransaction = (amount = 10)=>
-      return new this.TransactionModel amount, true
+    @WalletModel = WalletModel
+    @TransactionModel = TransactionModel
+    @CurrencyModel = CurrencyModel
+    @currency = @CurrencyModel.instances[0]
+    @createTransaction = (amount = 10)=>
+      return new @TransactionModel amount, true
   )
 
   it "is declared", ->
-    expect(this.WalletModel).toBeDefined()
+    expect(@WalletModel).toBeDefined()
 
   describe 'constructor', ->
     it 'throws an error if no currency is given', ->
 
       callWithoutCurrency = =>
-        wallet = new this.WalletModel(null)
+        wallet = new @WalletModel(null)
 
       expect(callWithoutCurrency).toThrow()
 
     it 'saves the given transactions', ->
       transactions = [
-        this.createTransaction()
-        this.createTransaction()
+        @createTransaction()
+        @createTransaction()
       ]
 
-      wallet = new this.WalletModel(this.currency, transactions)
+      wallet = new @WalletModel(@currency, transactions)
 
       expect(wallet.transactions.length).toBe 2
       expect(wallet.transactions).toContain(transactions[0])
@@ -38,11 +38,11 @@ describe "Wallet model", ->
 
     it 'updates its total based on given transactions', ->
       transactions = [
-        this.createTransaction 10
-        this.createTransaction 15
+        @createTransaction 10
+        @createTransaction 15
       ]
 
-      wallet = new this.WalletModel(this.currency, transactions)
+      wallet = new @WalletModel(@currency, transactions)
 
       expect(wallet.total).toBe(25)
 
@@ -51,21 +51,23 @@ describe "Wallet model", ->
 
     beforeEach ->
 
-      this.initialTransactions = [
-        this.createTransaction 10
-        this.createTransaction 15
+      @initialTransactions = [
+        @createTransaction 10
+        @createTransaction 15
       ]
 
-      this.wallet = new this.WalletModel(this.currency, this.initialTransactions)
+      @
+
+      @wallet = new @WalletModel(@currency, @initialTransactions)
 
     it 'saves the new transaction in last position', ->
-      transaction = this.createTransaction 25
-      this.wallet.addTransaction transaction
+      transaction = @createTransaction 25
+      @wallet.addTransaction transaction
 
-      expect(this.wallet.transactions).toContain transaction
+      expect(@wallet.transactions).toContain transaction
 
     it 'saves the new transaction in last position', ->
-      transaction = this.createTransaction 25
-      this.wallet.addTransaction transaction
+      transaction = @createTransaction 25
+      @wallet.addTransaction transaction
 
-      expect(this.wallet.total).toBe 50
+      expect(@wallet.total).toBe 50
