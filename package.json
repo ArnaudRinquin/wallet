@@ -7,7 +7,9 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "browser": {
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+    "jquery": "./bower_components/jquery/dist/jquery.js",
+    "angular": "./bower_components/angular/angular.min.js",
+    "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.min.js"
   },
   "scripts": {
     "postinstall": "bower install",
@@ -23,11 +25,15 @@
     ]
   },
   "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
+    "jquery": {
+      "exports": "$"
+    },
+    "angular": {
+      "exports": "angular",
+      "depends": "jquery"
+    },
+    "angular-ui-routeur": {
+      "depends": "angular"
     }
   },
   "devDependencies": {
@@ -59,11 +65,5 @@
     "pretty-hrtime": "~0.2.1",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.1"
-  },
-  "dependencies": {
-    "angular": "~1.2.16",
-    "angular-timer": "git://github.com/ArnaudRinquin/angular-timer#feature_commonjs",
-    "angular-ui-router": "~0.2.10",
-    "jquery": "~2.1.0"
   }
 }

@@ -1,9 +1,7 @@
 module.exports = angular.module(
   'app.directives', [
-    # require('./sampleDirective').name
+    require('./transactionListItem').name
+    require('./transactionForm').name
+    require('./totalPositiveOnceApplied').name
+    require('./wallet').name
   ])
-  .directive('sampleDirective', ->
-    restrict: 'E'
-    replace: true
-    template: '<blockquote>BOOM</blockquote>'
-  )

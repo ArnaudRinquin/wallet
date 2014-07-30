@@ -1,18 +1,22 @@
-module.exports = ($scope)->
-  $scope.foo = 'bar'
+class HomeController
+  constructor: (@$scope, @LocalWallet, @TransactionModel)->
+    @init()
 
-  $scope.countdown =
-    start: 25 * 60
+  init: ()=>
+    @$scope.wallet = @LocalWallet.getLocalWallet()
 
-  $scope.timerRunning = false;
+    @$scope.addTransaction = @addTransaction
+    @$scope.reset = @reset
+    @_resetNewTransaction()
 
-  $scope.startTimer = ->
-    $scope.$broadcast 'timer-start'
-    $scope.timerRunning = true
+  addTransaction: ()=>
+    @$scope.wallet.addTransaction @$scope.newTransaction
+    @_resetNewTransaction()
 
-  $scope.stopTimer = ->
-    $scope.$broadcast 'timer-stop'
-    $scope.timerRunning = false
+  _resetNewTransaction: ()=>
+    @$scope.newTransaction = new @TransactionModel(10, true)
 
-  $scope.$on 'timer-stopped', (event, data)->
-    console.log "Timer Stopped - data = #{data}"
+  reset: ()=>
+    @$scope.wallet = @LocalWallet.reset()
+
+module.exports = HomeController

@@ -1,8 +1,7 @@
 module.exports = angular.module(
   'app.home', [
-    require('angular-timer').name
+    'app.directives'
+    'app.services'
   ])
   .controller('HomeController', require('./controller'))
   .config require('./config')
-
-
