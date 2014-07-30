@@ -56,15 +56,24 @@ describe "Wallet model", ->
         @createTransaction 15
       ]
 
-      @
+      @repository =
+        onUpdate: (wallet)->
 
-      @wallet = new @WalletModel(@currency, @initialTransactions)
+      spyOn @repository, 'onUpdate'
+
+      @wallet = new @WalletModel(@currency, @initialTransactions, @repository)
 
     it 'saves the new transaction in last position', ->
       transaction = @createTransaction 25
       @wallet.addTransaction transaction
 
       expect(@wallet.transactions).toContain transaction
+
+    it 'calls the repository onUpdate function with itself', ->
+      transaction = @createTransaction 25
+      @wallet.addTransaction transaction
+
+      expect(@repository.onUpdate).toHaveBeenCalledWith(@wallet)
 
     it 'saves the new transaction in last position', ->
       transaction = @createTransaction 25
