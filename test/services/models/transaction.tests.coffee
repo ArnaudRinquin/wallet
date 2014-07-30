@@ -67,3 +67,40 @@ describe "Transaction model", ->
     it "contains the transaction amount", ->
       expect(@serialized.isCredit).toBe true
 
+  describe "TransactionModel.deserialize()", ->
+
+    beforeEach ->
+      @serialized =
+        amount: 25,
+        isCredit: false
+      @transaction = @TransactionModel.deserialize(@serialized)
+
+
+    it "returns a Transaction object", ->
+      expect(@transaction).toBeDefined()
+      expect(@transaction.constructor).toBe @TransactionModel
+
+    it "contains the transaction amount", ->
+      expect(@transaction.amount).toBe @serialized.amount
+
+    it "contains the transaction amount", ->
+      expect(@transaction.isCredit).toBe @serialized.isCredit
+
+  describe "serialize > deserialize", ->
+    beforeEach ->
+      @data = {
+        amount: 123,
+        isCredit: true
+      }
+
+      @originalTransaction = new @TransactionModel(@data.amount, @data.isCredit)
+
+      @serialized = @originalTransaction.serialize()
+      @deserializedTransaction = @TransactionModel.deserialize @serialized
+
+    it 'saves amount', ->
+      expect(@deserializedTransaction.amount).toBe @data.amount
+    it 'saves isCredit', ->
+      expect(@deserializedTransaction.isCredit).toBe @data.isCredit
+
+

@@ -14,4 +14,7 @@ class Transaction
       isCredit: @isCredit
     }
 
+  @deserialize: (serialized)->
+    new Transaction(serialized.amount, serialized.isCredit)
+
 module.exports = Transaction
