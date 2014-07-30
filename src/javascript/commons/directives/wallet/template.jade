@@ -7,4 +7,4 @@
     tbody
       tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}")
         td
-          transaction-list-item(transaction="transaction")
+          transaction-list-item(transaction="transaction", currency="wallet.currency")
