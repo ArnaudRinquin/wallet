@@ -3,20 +3,20 @@ class HomeController
     @init()
 
   init: ()=>
-    @wallet = @LocalWallet.getLocalWallet()
+    @$scope.wallet = @LocalWallet.getLocalWallet()
 
-    @$scope.wallet = @wallet
     @$scope.addTransaction = @addTransaction
     @$scope.reset = @reset
     @_resetNewTransaction()
 
   addTransaction: ()=>
-    @wallet.addTransaction @$scope.newTransaction
+    @$scope.wallet.addTransaction @$scope.newTransaction
     @_resetNewTransaction()
 
   _resetNewTransaction: ()=>
     @$scope.newTransaction = new @TransactionModel(10, true)
 
   reset: ()=>
+    @$scope.wallet = @LocalWallet.reset()
 
 module.exports = HomeController

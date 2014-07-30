@@ -1,5 +1,4 @@
 .wallet
   .total {{wallet.total}}
-  button.reset(ng-click="reset()") Reset
   .transactions
     transaction-list-item(ng-repeat="transaction in wallet.transactions", transaction="transaction")

@@ -8,6 +8,5 @@ module.exports = angular.module('directives.wallet',[])
     replace: true
     scope:
       wallet: '='
-      reset: '='
     controller: WalletDirectiveController
     template: require './template'
