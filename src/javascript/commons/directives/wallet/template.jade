@@ -1,4 +1,10 @@
-.wallet
-  .total {{wallet.total}}
-  .transactions
-    transaction-list-item(ng-repeat="transaction in wallet.transactions", transaction="transaction")
+.wallet.panel.panel-info
+  .panel-heading
+    span Grand total:
+    span.total.text-right {{wallet.total}}
+    span.currency {{wallet.currency.symbol}}
+  table.transactions.panel-body.table
+    tbody
+      tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}")
+        td
+          transaction-list-item(transaction="transaction")
