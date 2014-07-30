@@ -20,7 +20,7 @@ describe "Transaction directive", ->
     elm = angular.element('<div><transaction-form transaction="theTransaction" current-total="total"></transaction-form></div>')
     $compile(elm)($scope)
     $scope.$digest()
-    formElm = elm.find('form')
+    formElm = elm.find('.transactionForm')
     $dirScope = formElm.isolateScope()
     form = $dirScope.transactionForm
   )

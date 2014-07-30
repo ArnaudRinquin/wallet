@@ -1,5 +1,6 @@
 describe "Transaction directive", ->
   controller = null
+  compile = null
   $scope = null
   elm = null
 
@@ -7,12 +8,17 @@ describe "Transaction directive", ->
     module('directives.transactionListItem')
 
   beforeEach inject(($rootScope, $compile) ->
+    compile = $compile
     $scope = $rootScope.$new()
+    $scope.currency =
+      iso: 'FOO'
+      symbol: '∆'
+      iconClass: 'icon-foo'
     $scope.theTransaction =
       amount: 10
       isCredit: true
 
-    elm = angular.element("<transaction-list-item transaction='theTransaction'></transaction>")
+    elm = angular.element("<transaction-list-item transaction='theTransaction' currency='currency'></transaction>")
     $compile(elm)($scope)
     $scope.$digest()
   )
@@ -21,7 +27,25 @@ describe "Transaction directive", ->
     expect(amountContent.length).toBe 1
     expect(amountContent.text()).toBe '10'
 
-  it "shows transaction amount", ->
-    creditContent = elm.find('.isCredit')
-    expect(creditContent.length).toBe 1
-    expect(creditContent.text()).toBe 'true'
+  it "shows transaction currency iso", ->
+    currencyElement = elm.find('.currency')
+    expect(currencyElement.length).toBe 1
+    expect(currencyElement.text()).toBe $scope.currency.iso
+
+  describe "transaction sign", ->
+
+    it 'is "+" when transaction.isCredit', ->
+      creditContent = elm.find('.isCredit')
+      expect(creditContent.length).toBe 1
+      expect(creditContent.text()).toBe '+'
+
+    it 'is "-" when transaction.isCredit is false', ->
+      $scope.theTransaction =
+        amount: 10
+        isCredit: false
+      compile(elm)($scope)
+      $scope.$digest()
+      creditContent = elm.find('.isCredit')
+      expect(creditContent.length).toBe 1
+      expect(creditContent.text()).toBe '-'
+

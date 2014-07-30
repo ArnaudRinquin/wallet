@@ -8,5 +8,6 @@ module.exports = angular.module('directives.transactionListItem',[])
     replace: true
     scope:
       transaction: '='
+      currency: '='
     controller: TransactionController
     template: require './template'

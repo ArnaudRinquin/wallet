@@ -1,5 +1,14 @@
-form.transactionForm(name="transactionForm", novalidate)
-  input.isCredit(type="checkbox", ng-model="transaction.isCredit", name="isCredit")
-  input.amount(type="number", step="any", ng-model="transaction.amount", name="amount", min="0.01", required=true, total-positive-once-applied=true, total="{{currentTotal}}", to-be-added="{{transaction.isCredit}}")
-  span.currency {{currency.symbol}}
-  button.submit(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid") Add transaction
+.panel.transactionForm
+  .panel-body
+    form.form-inline(name="transactionForm", novalidate)
+      .form-group
+        .input-group
+          input.amount.form-control(type="number", step="any", ng-model="transaction.amount", name="amount", min="0.01", required=true, total-positive-once-applied=true, total="{{currentTotal}}", to-be-added="{{transaction.isCredit}}")
+          .input-group-addon
+            i.fa.currency(ng-class="currency.iconClass")
+
+      input.isCredit(bs-switch=true, ng-model="transaction.isCredit", type="checkbox",
+          switch-on-text="credit", switch-off-text="debit",
+          switch-on-color="success", switch-off-color="danger",
+          switch-size="large")
+      button.submit.btn.btn-default(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid") Add transaction
