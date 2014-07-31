@@ -3,6 +3,8 @@
     span Grand total:
     span.total.text-right {{wallet.total}}
     i.fa.currency(ng-class="wallet.currency.iconClass")
+    select(ng-model="newCurrency", ng-options="currency.iso for currency in currencies", ng-change="onCurrencySwitch()")
+      option(value="") Change currency
   table.transactions.panel-body.table
     tbody
       tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}", transaction-tr-item=true, transaction="transaction", currency="wallet.currency")
