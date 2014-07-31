@@ -4,9 +4,12 @@ class WalletDirectiveController
 
     @$scope.newCurrency = @$scope.wallet.currency.iso
 
-    @$scope.onCurrencySwitch = ()=>
+    @$scope.onCurrencySwitch = ($event, newCurrency)=>
+      $event.preventDefault()
+      $event.stopPropagation()
+      $scope.dropdownOpen = false
 
-      newCurrency = @$scope.newCurrency
+      # newCurrency = @$scope.newCurrency
       wallet = @$scope.wallet
 
       if newCurrency # Ensure it's not the default value

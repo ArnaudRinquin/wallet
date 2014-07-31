@@ -12,6 +12,7 @@
     "angular-bootstrap-switch": "./bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.min.js",
     "angular-cookies": "./bower_components/angular-cookies/angular-cookies.min.js",
     "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.min.js",
+    "ui-bootstrap-dropdown": "./bower_components/ui.bootstrap/src/dropdown/dropdown.js",
     "angular-local-storage": "./bower_components/Angular-localStorage/src/angularLocalStorage.js",
     "bootstrap": "./bower_components/bootstrap/dist/js/bootstrap.min.js",
     "bootstrap-switch": "./bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js"
@@ -51,6 +52,9 @@
         "angular",
         "angular-cookies"
       ]
+    },
+    "ui-bootstrap-dropdown": {
+      "depends": ["angular", "bootstrap"]
     },
     "bootstrap": {
       "depends": [

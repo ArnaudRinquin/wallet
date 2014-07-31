@@ -27,10 +27,10 @@ describe "Wallet directive", ->
     $scope.$digest()
   )
 
-  it "shows wallet total", ->
-    total = elm.find('.total')
+  it "shows formated wallet balance", ->
+    total = elm.find('.balance')
     expect(total.length).toBe 1
-    expect(total.text()).toBe '12'
+    expect(total.text()).toBe '12.00'
 
   it "shows all transactions", ->
     total = elm.find('[transaction-tr-item]')
