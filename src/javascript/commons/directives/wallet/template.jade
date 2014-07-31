@@ -1,8 +1,16 @@
 .wallet.panel.panel-default
   .panel-heading
-    span Grand total:
-    span.total.text-right {{wallet.total}}
-    i.fa.currency(ng-class="wallet.currency.iconClass")
+    span.lead
+      span Balance:
+      span.balance.text-right {{wallet.total | number:2}}
+      i.fa.currency(ng-class="wallet.currency.iconClass")
+
+    .btn-group.pull-right(dropdown, is-open="dropdownOpen")
+      button.btn.btn-primary.dropdown-toggle(type="button") Change currency
+        span.caret
+      ul.dropdown-menu(role="menu")
+        li(ng-repeat="currency in currencies")
+          a(href="#", ng-click="onCurrencySwitch($event, currency)") {{currency.iso}}
   table.transactions.panel-body.table
     tbody
       tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}", transaction-tr-item=true, transaction="transaction", currency="wallet.currency")

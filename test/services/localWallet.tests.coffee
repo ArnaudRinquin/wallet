@@ -78,6 +78,7 @@ describe 'LocalWallet', ->
         expect(@restoredWallet.transactions).toEqual @wallet.transactions
 
       it 'wallet has the right currency', ->
+        delete @wallet.currency.$$hashKey # Don't know where this comes from
         expect(@restoredWallet.currency).toEqual @wallet.currency
 
     describe 'onUpdate', ->
