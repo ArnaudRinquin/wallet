@@ -5,7 +5,7 @@ describe "Transaction directive", ->
   elm = null
 
   beforeEach ->
-    module('directives.transactionListItem')
+    module('directives.transactionTrItem')
 
   beforeEach inject(($rootScope, $compile) ->
     compile = $compile
@@ -18,14 +18,14 @@ describe "Transaction directive", ->
       amount: 10
       isCredit: true
 
-    elm = angular.element("<transaction-list-item transaction='theTransaction' currency='currency'></transaction>")
+    elm = angular.element("<div transaction-tr-item transaction='theTransaction' currency='currency'></div>")
     $compile(elm)($scope)
     $scope.$digest()
   )
-  it "shows transaction amount", ->
+  it "shows formated transaction amount", ->
     amountContent = elm.find('.amount')
     expect(amountContent.length).toBe 1
-    expect(amountContent.text()).toBe '10'
+    expect(amountContent.text()).toBe '10.00'
 
   it "shows transaction currency iso", ->
     currencyElement = elm.find('.currency')

@@ -14,13 +14,17 @@ describe "Transaction model", ->
     beforeEach ->
       @amount = 10
       @isCredit = true
-      @transaction = new @TransactionModel @amount, @isCredit
+      @createdAt = new Date()
+      @transaction = new @TransactionModel @amount, @isCredit, @createdAt
 
     it 'saves the given amount', ->
       expect(@transaction.amount).toBe @amount
 
     it 'saves the isCredit attribute', ->
       expect(@transaction.isCredit).toBe @isCredit
+
+    it 'saves the createdAt attribute', ->
+      expect(@transaction.createdAt).toBe @createdAt
 
     it 'accepts positive integer only', ->
 
@@ -31,6 +35,11 @@ describe "Transaction model", ->
 
       expect(callWithZero).toThrow()
       expect(callWithNegative).toThrow()
+
+    it 'as a default createdAt date', ->
+      transaction = new @TransactionModel 10, true
+      expect(transaction.createdAt).toBeDefined()
+      expect(transaction.createdAt.constructor).toBe Date
 
   describe "applyToNumber(number)", ->
 
@@ -55,7 +64,8 @@ describe "Transaction model", ->
   describe "serialize()", ->
 
     beforeEach ->
-      @transaction = new @TransactionModel 10, true
+      @createdAt = new Date()
+      @transaction = new @TransactionModel 10, true, @createdAt
       @serialized = @transaction.serialize()
 
     it "returns an object", ->
@@ -67,14 +77,19 @@ describe "Transaction model", ->
     it "contains the transaction amount", ->
       expect(@serialized.isCredit).toBe true
 
+    it "contains the transaction createdAt", ->
+      expect(@serialized.createdAt).toBe @createdAt.toISOString()
+
   describe "TransactionModel.deserialize()", ->
 
     beforeEach ->
+      @createdAt = new Date()
       @serialized =
         amount: 25,
         isCredit: false
-      @transaction = @TransactionModel.deserialize(@serialized)
+        createdAt: @createdAt.toISOString()
 
+      @transaction = @TransactionModel.deserialize(@serialized)
 
     it "returns a Transaction object", ->
       expect(@transaction).toBeDefined()
@@ -86,11 +101,15 @@ describe "Transaction model", ->
     it "contains the transaction amount", ->
       expect(@transaction.isCredit).toBe @serialized.isCredit
 
+    it "contains the transaction Creation date", ->
+      expect(@transaction.createdAt).toEqual(new Date(@serialized.createdAt))
+
   describe "serialize > deserialize", ->
     beforeEach ->
       @data = {
         amount: 123,
         isCredit: true
+        createdAt: new Date()
       }
 
       @originalTransaction = new @TransactionModel(@data.amount, @data.isCredit)
@@ -102,5 +121,7 @@ describe "Transaction model", ->
       expect(@deserializedTransaction.amount).toBe @data.amount
     it 'saves isCredit', ->
       expect(@deserializedTransaction.isCredit).toBe @data.isCredit
+    it 'saves createdAt', ->
+      expect(@deserializedTransaction.createdAt).toEqual @data.createdAt
 
 
