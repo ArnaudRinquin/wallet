@@ -2,7 +2,7 @@
   .panel-heading
     span Grand total:
     span.total.text-right {{wallet.total}}
-    span.currency {{wallet.currency.symbol}}
+    i.fa.currency(ng-class="wallet.currency.iconClass")
   table.transactions.panel-body.table
     tbody
       tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}")
