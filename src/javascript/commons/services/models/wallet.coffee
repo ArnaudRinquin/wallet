@@ -8,6 +8,10 @@ class Wallet
     @_updateTotal()
     @_notifyUpdate()
 
+  setCurrency: (currency)->
+    @currency = currency
+    @_notifyUpdate()
+
   _updateTotal: ()->
     @total = @transactions.reduce (subtotal, transaction)->
       transaction.applyToNumber subtotal

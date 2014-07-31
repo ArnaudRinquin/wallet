@@ -46,6 +46,29 @@ describe "Wallet model", ->
 
       expect(wallet.total).toBe(25)
 
+  describe 'setCurrency(currency)', ->
+
+    beforeEach ->
+      @initialTransactions = [
+        @createTransaction 10
+        @createTransaction 15
+      ]
+
+      @repository =
+        onUpdate: (wallet)->
+
+      spyOn @repository, 'onUpdate'
+
+      @newCurrency = new @CurrencyModel 'NEW', '√', 'icon-new'
+
+      @wallet = new @WalletModel @currency, @initialTransactions, @repository
+      @wallet.setCurrency(@newCurrency)
+
+    it 'saves the currency', ->
+      expect(@wallet.currency).toBe @newCurrency
+
+    it 'calls the repository onUpdate function with itself', ->
+      expect(@repository.onUpdate).toHaveBeenCalledWith @wallet
 
   describe 'addTransaction', ->
 
