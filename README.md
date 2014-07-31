@@ -10,15 +10,22 @@ Angular Wallet
 * Gulp
 * Browserify
 * CoffeeScript
+* Jade
 * SASS + Compass
 * Karma + Jasmine
+* BrowserSync
 
-### Running code
+### Lib used on client side
 
 * Angular
+  * angular-ui-dropdown
+  * angular-ui-routeur
+  * angularLocalStorage
+  * angular-bootstrap-switch
+* Bootstrap
+  * bootstrap-switch
 * Font-Awesome
 * jQuery
-* Angular UI-Routeur
 
 ## Setup & build
 
@@ -58,19 +65,117 @@ Continuous deployment through codeship: [awallet](http://awallet.herokuapp.com/)
 
 ### Heroku
 
-1. Create an app
+#### Create an app
 
 ```
 heroku apps:create wallet
 ```
 
-2. Set the app custom buildpack:
+#### Set the app custom buildpack:*
 
 ```
 heroku config:add BUILDPACK_URL=https://github.com/9elements/heroku-buildpack-nodejs-gulp-haml-sass-compass.git -a wallet
 ```
-3. Add the heroku app as a git repo:
+#### Add the heroku app as a git repo:*
 
 ```
 git remote add heroku git@heroku.com:wallet.git
 ```
+
+#### Deploy the app
+
+```
+git push heroku master
+```
+
+## Technical details
+
+### Models
+
+#### Wallet
+
+Constructor
+
+`new WalletModel(currency, [transactions], [repository])`
+
+Attributes
+
+* `currency`: A `Currency` model instance
+* `transactions`: Array of `Transaction` model instances
+
+Methods
+
+* `addTransaction(transaction)`: Adds a transaction to the list. Will call `repository.onUpdate()`
+* `setCurrency(currency)`: Replace current currency, will call `repository.onUpdate()`
+
+#### Transaction
+
+Constructor
+
+`new TransactionModel(amount, isCredit, [createdAt])`
+
+Attributes
+
+* `amount`: A float value
+* `isCredit`: when applied to a number, should amount be added or removed?
+* `createdAt`: A stored creation date, default is `new Date()`
+
+Methods
+
+* `applyToNumber(number)`: depending on `isCredit`, adds/remove `amount` to/from number
+* `serialize`: returns a clean storable object
+* `TransactionModel.deserialize(serializedObject)`: returns a Transaction instance.
+
+#### Currency
+
+`new CurrencyModel(iso, symbol, iconClass)`
+
+Attributes
+
+* `iso`: The currency ISO code (USD, GPB...) see [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)
+* `symbol`: The textual currency symbol ($, £...)
+* `iconClass`: The font-awesome icon class (fa-usd, fa-gbp...)
+* `CurrencyModel.instances`: some already instanciated currencies (USD, GBP, EUR)
+
+Methods
+
+* `serialize`: returns a clean storable object
+* `CurrencyModel.deserialize(serializedObject)`: returns a Currency
+* `CurrencyModel.getFromIso(iso)`: returns the existing currency among `CurrencyModel.instances`
+
+### Directives
+
+#### Wallet
+
+A directive that displays a wallet transactions list and balance
+
+Attributes:
+
+* `wallet`: a `WalletModel` object
+
+#### TransactionForm
+
+Add form directive for transaction creation
+
+Attributes:
+
+* `transaction`: an initial `TransactionModel` to fill the form with
+* `onSubmit`: submit callback, called with the `transaction`
+* `currency`: the `CurrencyModel` to be used (display purpose only)
+* `currentTotal`: used to ensure the transaction would not render the balance negative.
+
+#### TransactionTrItem
+
+Add transaction directive utputing a table row (`<tr>`) for the given `transaction`
+
+Attributes:
+
+* `transaction`: an initial `TransactionModel` to fill the form with
+* `currency`: the `CurrencyModel` to be used (display purpose only)
+
+## TODO
+
+* Store amounts has cents instead of float
+* Currency icons as a filter
+* Add appache on deployed apps to make it offline (easy with [gulp-manifest](https://github.com/hillmanov/gulp-manifest))
+* Add optional label on transactions?
