@@ -22,10 +22,10 @@ describe "Transaction directive", ->
     $compile(elm)($scope)
     $scope.$digest()
   )
-  it "shows transaction amount", ->
+  it "shows formated transaction amount", ->
     amountContent = elm.find('.amount')
     expect(amountContent.length).toBe 1
-    expect(amountContent.text()).toBe '10'
+    expect(amountContent.text()).toBe '10.00'
 
   it "shows transaction currency iso", ->
     currencyElement = elm.find('.currency')

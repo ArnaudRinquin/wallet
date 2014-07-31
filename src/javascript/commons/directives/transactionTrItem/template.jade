@@ -1,6 +1,6 @@
 tr.transactionTrItem
   td
     span.isCredit {{transaction.isCredit ? '+' : '-'}}
-    span.amount {{transaction.amount}}
+    span.amount {{transaction.amount | number: 2}}
   td.currency {{currency.iso}}
-  td.createdAt {{transaction.createdAt}}
+  td.createdAt {{transaction.createdAt | date: "medium"}}
