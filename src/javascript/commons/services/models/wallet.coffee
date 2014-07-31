@@ -3,16 +3,17 @@ class Wallet
     throw "No currency given" unless @currency
     @_updateTotal()
 
-  addTransaction: (transaction)->
-    throw "Balance would be negative" unless @_isBalancePositiveWhenApplied(transaction)
+  addTransaction: (transaction)=>
+    throw "negative balance" unless @_isBalancePositiveWhenApplied(transaction)
     @transactions.push transaction
     @_updateTotal()
     @_notifyUpdate()
 
-  removeTransaction: (transaction)->
-    throw "Balance would be negative" unless @_isBalancePositiveWhenReverted(transaction)
+  removeTransaction: (transaction)=>
+    throw "negative balance" unless @_isBalancePositiveWhenReverted(transaction)
+
     index = @transactions.indexOf transaction
-    if index
+    if index > -1
       @transactions.splice index, 1
       @_updateTotal()
       @_notifyUpdate()

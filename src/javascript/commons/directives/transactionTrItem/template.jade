@@ -4,3 +4,8 @@ tr.transactionTrItem
     span.amount {{transaction.amount | number: 2}}
   td.currency {{currency.iso}}
   td.createdAt {{transaction.createdAt | date: "medium"}}
+  td
+    span.label.label-danger(ng-show="removeError") Can't remove: {{removeError}}
+    button.btn.btn-danger.btn-small.pull-right
+      i.fa.fa-trash-o(ng-click="remove()")
+
