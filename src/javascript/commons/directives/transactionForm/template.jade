@@ -1,17 +1,26 @@
-.panel.transactionForm
-  .panel-body
-    form.form-inline(name="transactionForm", novalidate)
-      .form-group
-        .input-group
-          input.amount.form-control(type="number", step="any", ng-model="transaction.amount", name="amount", min="0.01", required=true, total-positive-once-applied=true, total="{{currentTotal}}", to-be-added="{{transaction.isCredit}}")
-          .input-group-addon
-            i.fa.currency(ng-class="currency.iconClass")
+.well.transactionForm
+  form.form-horizontal(name="transactionForm", novalidate)
+    .lead Add a transaction
+    .form-group
+      label.col-md-3.control-label(for="transactionAmount") Amount
+      .input-group
+        input.amount.form-control.col-md-5#transactionAmount(type="number", step="any", ng-model="transaction.amount", name="amount", min="0.01", required=true, total-positive-once-applied=true, total="{{currentTotal}}", to-be-added="{{transaction.isCredit}}")
+        .input-group-addon
+          i.fa.currency(ng-class="currency.iconClass")
+      span.col-md-offset-3.text-danger(ng-show="transactionForm.amount.$error.required") A valid amount is required
+      span.col-md-offset-3.text-danger(ng-show="transactionForm.amount.$error.min") A transaction amount must be positive
 
-      input.isCredit(bs-switch=true, ng-model="transaction.isCredit", type="checkbox",
-          switch-on-text="credit", switch-off-text="debit",
-          switch-on-color="success", switch-off-color="danger",
-          switch-size="large")
-
-      button.submit.btn.btn-default(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid") Add trans action
+    .form-group
+      label.col-md-3.control-label(for="transactionIsCredit") Credit or debit
+      input.isCredit#transactionIsCredit(bs-switch=true, ng-model="transaction.isCredit", type="checkbox",
+        switch-on-text="credit", switch-off-text="debit",
+        switch-on-color="success", switch-off-color="danger",
+        switch-size="large")
       span.text-danger(ng-show="transactionForm.$error.totalPositive") Your balance would negative
-      span.text-danger(ng-show="transactionForm.amount.$error.required") A vlid amount is required
+
+    .form-group
+      button.submit.btn.btn-info.col-xs-3.col-xs-offset-3.col-sm-3.col-sm-offset-3.col-md-3.col-md-offset-3(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid", ng-class="{'btn-default': transactionForm.$invalid}")
+        span.valid(ng-show="! transactionForm.$invalid") {{transaction.isCredit ? 'Add' : 'Remove'}} {{transaction.amount | number:2 }}
+          i.fa.currency(ng-class="currency.iconClass")
+        span.invalid(ng-show="transactionForm.$invalid") Something's wrong
+
