@@ -5,4 +5,4 @@
     i.fa.currency(ng-class="wallet.currency.iconClass")
   table.transactions.panel-body.table
     tbody
-      tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}", transaction-list-item=true, transaction="transaction", currency="wallet.currency")
+      tr(ng-repeat="transaction in wallet.transactions", ng-class="{success: transaction.isCredit, danger: !transaction.isCredit}", transaction-tr-item=true, transaction="transaction", currency="wallet.currency")

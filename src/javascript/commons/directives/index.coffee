@@ -1,6 +1,6 @@
 module.exports = angular.module(
   'app.directives', [
-    require('./transactionListItem').name
+    require('./transactionTrItem').name
     require('./transactionForm').name
     require('./totalPositiveOnceApplied').name
     require('./wallet').name

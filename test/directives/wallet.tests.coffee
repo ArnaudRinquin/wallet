@@ -33,5 +33,5 @@ describe "Wallet directive", ->
     expect(total.text()).toBe '12'
 
   it "shows all transactions", ->
-    total = elm.find('[transaction-list-item]')
+    total = elm.find('[transaction-tr-item]')
     expect(total.length).toBe 3

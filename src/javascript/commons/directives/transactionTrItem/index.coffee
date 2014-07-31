@@ -1,9 +1,9 @@
 class TransactionController
   constructor: (@$scope)->
 
-module.exports = angular.module('directives.transactionListItem',[])
+module.exports = angular.module('directives.transactionTrItem',[])
 
-  .directive 'transactionListItem', ->
+  .directive 'transactionTrItem', ->
     restrict: 'A'
     replace: true
     scope:
