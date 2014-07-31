@@ -11,4 +11,7 @@
           switch-on-text="credit", switch-off-text="debit",
           switch-on-color="success", switch-off-color="danger",
           switch-size="large")
-      button.submit.btn.btn-default(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid") Add transaction
+
+      button.submit.btn.btn-default(type="submit", ng-click="onSubmit()", ng-disabled="transactionForm.$invalid") Add trans action
+      span.text-danger(ng-show="transactionForm.$error.totalPositive") Your balance would negative
+      span.text-danger(ng-show="transactionForm.amount.$error.required") A vlid amount is required
