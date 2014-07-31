@@ -8,6 +8,12 @@ class Transaction
     else
       total - @amount
 
+  revertFromNumber: (total)->
+    return if @isCredit
+      total - @amount
+    else
+      total + @amount
+
   serialize: ()->
     {
       amount: @amount

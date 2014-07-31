@@ -1,6 +1,12 @@
 tr.transactionTrItem
-  td
+  td.col-xs-3.col-sm-3.col-md-3
     span.isCredit {{transaction.isCredit ? '+' : '-'}}
     span.amount {{transaction.amount | number: 2}}
-  td.currency {{currency.iso}}
-  td.createdAt {{transaction.createdAt | date: "medium"}}
+  td.col-xs-3.col-sm-3.col-md-3.currency {{currency.iso}}
+  td.col-xs-3.col-sm-3.col-md-3.createdAt {{transaction.createdAt | date: "medium"}}
+  td.col-xs-3.col-sm-3.col-md-3
+    span.text-danger(ng-show="removeError") Can't remove: {{removeError}}
+  td.col-xs-3.col-sm-3.col-md-3
+    button.btn.btn-danger.btn-small.pull-right(ng-click="remove()")
+      i.fa.fa-trash-o
+

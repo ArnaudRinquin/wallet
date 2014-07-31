@@ -60,6 +60,25 @@ describe "Transaction model", ->
 
       it "removes its amount from the given number", ->
         expect(@result).toBe 15
+  describe "revertFromNumber(number)", ->
+
+    describe "when isCredit is true", ->
+
+      beforeEach ->
+        @transaction = new @TransactionModel 10, true
+        @result = @transaction.revertFromNumber 20
+
+      it "adds its amount to the given number", ->
+        expect(@result).toBe 10
+
+    describe "when isCredit is false", ->
+
+      beforeEach ->
+        @transaction = new @TransactionModel 10, false
+        @result = @transaction.revertFromNumber 25
+
+      it "removes its amount from the given number", ->
+        expect(@result).toBe 35
 
   describe "serialize()", ->
 

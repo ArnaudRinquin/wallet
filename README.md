@@ -105,7 +105,8 @@ Attributes
 
 Methods
 
-* `addTransaction(transaction)`: Adds a transaction to the list. Will call `repository.onUpdate()`
+* `addTransaction(transaction)`: Adds a transaction to the list. Will call `repository.onUpdate()`. Throws if balance becomes negative.
+* `removeTransaction(transaction)`: Adds a transaction to the list. Will call `repository.onUpdate()`. Throws if balance becomes negative.
 * `setCurrency(currency)`: Replace current currency, will call `repository.onUpdate()`
 
 #### Transaction
@@ -122,7 +123,8 @@ Attributes
 
 Methods
 
-* `applyToNumber(number)`: depending on `isCredit`, adds/remove `amount` to/from number
+* `applyToNumber(number)`: depending on `isCredit`, adds/remove `amount` to/from
+* `revertNumber(number)`: depending on `isCredit`, remove/adds `amount` to/from number
 * `serialize`: returns a clean storable object
 * `TransactionModel.deserialize(serializedObject)`: returns a Transaction instance.
 

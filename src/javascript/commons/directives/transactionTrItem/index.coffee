@@ -1,5 +1,13 @@
 class TransactionController
-  constructor: (@$scope)->
+  constructor: (@$scope, @$timeout)->
+    @$scope.remove = ()=>
+      try
+        @$scope.onRemove(@$scope.transaction)
+      catch error
+        @$scope.removeError = error
+        @$timeout =>
+          @$scope.removeError =null
+        , 2500
 
 module.exports = angular.module('directives.transactionTrItem',[])
 
@@ -9,5 +17,6 @@ module.exports = angular.module('directives.transactionTrItem',[])
     scope:
       transaction: '='
       currency: '='
+      onRemove: '='
     controller: TransactionController
     template: require './template'

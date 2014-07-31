@@ -86,7 +86,7 @@ describe "Wallet model", ->
 
       @wallet = new @WalletModel(@currency, @initialTransactions, @repository)
 
-    it 'saves the new transaction in last position', ->
+    it 'saves the new transaction', ->
       transaction = @createTransaction 25
       @wallet.addTransaction transaction
 
@@ -98,8 +98,53 @@ describe "Wallet model", ->
 
       expect(@repository.onUpdate).toHaveBeenCalledWith(@wallet)
 
-    it 'saves the new transaction in last position', ->
+    it 'update its total', ->
       transaction = @createTransaction 25
       @wallet.addTransaction transaction
 
       expect(@wallet.total).toBe 50
+
+    it 'forbid adding a transaction if balance becomes negative', ->
+      negativeTransaction = @createTransaction 35, false
+
+      addNegative = =>
+        @wallet.addTransaction positiveTransaction
+
+      expect(addNegative).toThrow()
+
+  describe 'removeTransaction', ->
+    beforeEach ->
+
+      @initialTransactions = [
+        @createTransaction 10
+        @createTransaction 15
+      ]
+
+      @repository =
+        onUpdate: (wallet)->
+
+      spyOn @repository, 'onUpdate'
+
+      @wallet = new @WalletModel(@currency, @initialTransactions, @repository)
+
+      @removedTransaction = @initialTransactions[1]
+      @wallet.removeTransaction @removedTransaction
+
+    it 'forbid removing transaction if balance becomes negative', ->
+      positiveTransaction = @createTransaction 35
+      negativeTransaction = @createTransaction 35, false
+
+      removePositive = =>
+        @wallet.removeTransaction positiveTransaction
+
+      expect(removePositive).toThrow()
+
+
+    it 'removes the given transaction', ->
+      expect(@wallet.transactions).not.toContain @removedTransaction
+
+    it 'calls the repository onUpdate function with itself', ->
+      expect(@repository.onUpdate).toHaveBeenCalledWith(@wallet)
+
+    it 'update its total', ->
+      expect(@wallet.total).toBe 10
