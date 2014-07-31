@@ -1,4 +1,6 @@
-span.transactionListItem
-  span.isCredit {{transaction.isCredit ? '+' : '-'}}
-  span.amount {{transaction.amount}}
-  span.currency {{currency.iso}}
+tr.transactionListItem
+  td
+    span.isCredit {{transaction.isCredit ? '+' : '-'}}
+    span.amount {{transaction.amount}}
+  td.currency {{currency.iso}}
+  td.createdAt {{transaction.createdAt}}

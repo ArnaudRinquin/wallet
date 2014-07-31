@@ -4,7 +4,7 @@ class TransactionController
 module.exports = angular.module('directives.transactionListItem',[])
 
   .directive 'transactionListItem', ->
-    restrict: 'E'
+    restrict: 'A'
     replace: true
     scope:
       transaction: '='

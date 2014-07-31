@@ -18,7 +18,7 @@ describe "Transaction directive", ->
       amount: 10
       isCredit: true
 
-    elm = angular.element("<transaction-list-item transaction='theTransaction' currency='currency'></transaction>")
+    elm = angular.element("<div transaction-list-item transaction='theTransaction' currency='currency'></div>")
     $compile(elm)($scope)
     $scope.$digest()
   )
