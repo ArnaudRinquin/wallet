@@ -168,7 +168,7 @@ Attributes:
 
 #### TransactionTrItem
 
-Add transaction directive utputing a table row (`<tr>`) for the given `transaction`
+Add transaction directive outputing a table row (`<tr>`) for the given `transaction`
 
 Attributes:
 
@@ -177,7 +177,7 @@ Attributes:
 
 ## TODO
 
-* Store amounts has cents instead of float
+* Store amounts as cents instead of float
 * Currency icons as a filter
-* Add appache on deployed apps to make it offline (easy with [gulp-manifest](https://github.com/hillmanov/gulp-manifest))
+* Add appcache on deployed apps to make it offline (easy with [gulp-manifest](https://github.com/hillmanov/gulp-manifest))
 * Add optional label on transactions?
